@@ -44,7 +44,7 @@ module.exports = function(app) {
         
         SalasDAO.salva(salas,function(erros, resultados){
             res.redirect('/salas');
-        });
+        }); 
 
         connection.end();
 
