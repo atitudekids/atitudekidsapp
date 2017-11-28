@@ -1,6 +1,6 @@
 ## atitudekidsapp
 
-## Configuracao
+## Configuração
 
 Criar as seguintes variáveis de ambiente:
 
