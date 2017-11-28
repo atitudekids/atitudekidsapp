@@ -5,7 +5,17 @@ module.exports = function(app) {
         var SalasDAO = new app.infra.SalasDAO(connection);
 
         SalasDAO.lista(function(err, results) {
-            res.json(results);
+            if(err){
+                res.format({
+                    json: function() {
+                        res.status(500).json("FALHA INTERNA");
+                    }
+                });
+                return;
+            }else{
+                res.json(results);
+            }
+            
         });
 
         connection.end();
@@ -26,7 +36,7 @@ module.exports = function(app) {
         if (erros){
             res.format({
                 json: function() {
-                    res.status(400).json(erros);
+                    res.status(500).json(erros);
                 }
             });
             return;
