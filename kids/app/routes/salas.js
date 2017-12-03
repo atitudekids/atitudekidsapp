@@ -20,32 +20,31 @@ module.exports = function(app) {
 
         connection.end();
     });
-
+        
     app.post('/salas', function(req, res){
-
-        var salas = req.body;
-
         var connection = app.infra.connectionFactory();
         var SalasDAO = new app.infra.SalasDAO(connection);
 
-        req.assert('nome_sala','O nome da sala é obrigatório!').notEmpty();
-        req.assert('idade_permit','A idade permitida na sala é obrigatória').notEmpty();
-        //req.assert('data_culto','A data do próximo culto deve ser infomada').notEmpty();
+        var salas = req.body;
 
-        var erros = req.validationErrors();
-        if (erros){
+        req.assert('nome_sala','O nome da sala deve ser inserido').notEmpty();
+        
+        var errors = req.validationErrors();
+        if (errors){
             res.format({
                 json: function() {
-                    res.status(500).json(erros);
+                    res.status(400).send(erros);
                 }
             });
             return;
         }
-        
-        SalasDAO.salva(salas,function(erros, resultados){
-            res.redirect('/salas');
-        }); 
 
+        SalasDAO.salva(salas,function(exception, result){
+            if (!exception) {
+                res.redirect("/salas");
+            }
+        }); 
+        
         connection.end();
 
     });
