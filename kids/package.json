@@ -2,12 +2,12 @@
   "name": "kids",
   "version": "1.0.0",
   "description": "Aplicativo para controle de crianças nos cultos AtitudeKids",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app"
   },
-  "author": "mayarateles",
+  "author": "Rocha",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -21,7 +21,8 @@
     "express-validator": "^4.3.0",
     "joi": "^13.0.2",
     "method-override": "^2.3.10",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "sequelize": "^4.28.1"
   },
   "engines": {
     "node": "6.11.3"

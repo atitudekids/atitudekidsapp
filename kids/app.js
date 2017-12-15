@@ -1,12 +1,28 @@
-var app = require('./config/express')(); //biblioteca para facilitar requisições
-var http = require('http').Server(app);
+'use strict';
 
-var porta = process.env.PORT || 3000;
-var server = http.listen(porta, function () {
+const express = require('express'),
+    bodyParser = require('body-parser'),
+    morgan = require('morgan'),
+    db = require('./app/config/db'),
+    env = require('./app/config/env'),
+    router = require('./app/router/index');
 
-    var host = server.address().address;
-    var port = server.address().port;
+const app = express();
+const port = env.PORT;
 
-    console.log('Servidor rodando na http://%s:%s', host, port);
+app.use(morgan('combined'));
+app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header('Content-Type', 'application/json');
+  next();
+});
+
+router(app, db);
+
+//drop and resync with { force: true }
+// db.sequelize.sync(false).then(() => {
+  app.listen(port, () => {
+    console.log('Express listening on port:', port);
+  // });
 });
