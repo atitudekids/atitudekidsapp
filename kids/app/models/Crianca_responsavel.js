@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             primaryKey: true,
             references: {
-                model: 'criancas',
+                model: 'crianca',
                 key: 'id_crianca'
             },
             allowNull: false
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             primaryKey: true,
             references: {
-                model: 'responsaveis',
+                model: 'responsavel',
                 key: 'id_responsavel'
             },
             allowNull: false

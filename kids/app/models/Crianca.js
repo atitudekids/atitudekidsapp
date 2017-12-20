@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-    const Criancas = sequelize.define('criancas', {
+    const Crianca = sequelize.define('crianca', {
         id_crianca: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -36,5 +36,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
         freezeTableName: true
     });
-    return Criancas;
+    return Crianca;
 };

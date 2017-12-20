@@ -3,7 +3,7 @@
 module.exports = (app, db) => {
   // GET all criancas
   app.get('/criancas', (req, res) => {
-    db.criancas.findAll()
+    db.crianca.findAll()
       .then(criancas => {
         res.json(criancas);
       });
@@ -11,9 +11,8 @@ module.exports = (app, db) => {
 
   // GET one crianca by id
   app.get('/crianca/:id', (req, res) => {
-    const id = req.params.id_crianca;
-    db.criancas.find({
-      where: { id: id_crianca}
+    db.crianca.find({
+      where: { id_crianca: req.params.id}
     })
       .then(crianca => {
         res.json(crianca);
@@ -29,7 +28,7 @@ module.exports = (app, db) => {
     const fotoCrianca = req.body.foto_crianca;
     const observacao = req.body.observacao;
     const validaCrianca = req.body.validacao;
-    db.criancas.create({
+    db.crianca.create({
       nome: nome,
       dataNascimentoCrianca: dt_nascimento,
       identificacaoCrianca: identificacao,
@@ -44,9 +43,9 @@ module.exports = (app, db) => {
 
   // PATCH single pet
   app.patch('/crianca/:id', (req, res) => {
-    const id = req.params.id_crianca;
+    const id = req.params.id;
     const updates = req.body.updates;
-    db.criancas.find({
+    db.crianca.find({
       where: { id: id_crianca }
     })
       .then(crianca => {
@@ -59,7 +58,7 @@ module.exports = (app, db) => {
 
   app.delete('/crianca/:id', (req, res) => {
     const id = req.params.id_crianca;
-    db.criancas.destroy({
+    db.crianca.destroy({
       where: { id: id_crianca }
     })
       .then(deletedCrianca => {

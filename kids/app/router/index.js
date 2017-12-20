@@ -1,8 +1,8 @@
 'use strict'
 
 const routes = [
-  require('./routes/responsaveis'),
-  require('./routes/criancas')
+  require('./routes/responsavel'),
+  require('./routes/crianca')
 ];
 
 // Add access to the app and db objects to each route

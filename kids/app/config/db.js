@@ -64,15 +64,15 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-db.responsaveis = require('../models/Responsaveis.js')(sequelize, Sequelize);
-db.criancas = require('../models/Criancas.js')(sequelize, Sequelize);
+db.responsavel = require('../models/Responsavel.js')(sequelize, Sequelize);
+db.crianca = require('../models/Crianca.js')(sequelize, Sequelize);
 db.crianca_responsavel = require('../models/Crianca_responsavel.js')(sequelize, Sequelize);
 
 //Relations
-db.criancas.belongsToMany(db.responsaveis, {
+db.crianca.belongsToMany(db.responsavel, {
   through: db.crianca_responsavel
 });
-db.responsaveis.belongsToMany(db.criancas, {
+db.responsavel.belongsToMany(db.crianca, {
   through: db.crianca_responsavel
 });
 

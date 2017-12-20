@@ -4,7 +4,7 @@ module.exports = (app, db) => {
 
   // GET all owners
   app.get('/responsaveis', (req, res) => {
-    db.responsaveis.findAll()
+    db.responsavel.findAll()
       .then(responsaveis => {
         res.json(responsaveis);
       });
@@ -13,7 +13,7 @@ module.exports = (app, db) => {
   // GET one owner by id
   app.get('/responsavel/:id', (req, res) => {
     const id = req.params.id_responsavel;
-    db.responsaveis.find({
+    db.responsavel.find({
       where: { id: id_responsavel}
     })
       .then(responsavel => {
@@ -38,7 +38,7 @@ module.exports = (app, db) => {
     const fotoResponsavel = req.body.foto;
     const validadoResponsavel = req.body.validado;
     const senhaResponsavel  = req.body.req.body.senha;
-    db.responsaveis.create({
+    db.responsavel.create({
       nomeResponsavel: nome,
       telefoneResponsavel: telefone,
       identificacaoResponsavel: identificacao,
@@ -64,7 +64,7 @@ module.exports = (app, db) => {
   app.patch('/responsavel/:id', (req, res) => {
     const id = req.params.id_responsavel;
     const updates = req.body.updates;
-    db.responsaveis.find({
+    db.responsavel.find({
       where: { id: id_responsavel }
     })
       .then(responsavel => {
@@ -78,7 +78,7 @@ module.exports = (app, db) => {
   // DELETE single owner
   app.delete('/responsavel/:id', (req, res) => {
     const id = req.params.id_responsavel;
-    db.responsaveis.destroy({
+    db.responsavel.destroy({
       where: { id: id_responsavel }
     })
       .then(deletedResponsavel => {
