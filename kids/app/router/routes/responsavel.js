@@ -2,7 +2,8 @@
 
 module.exports = (app, db) => {
 
-  // GET all owners
+  // CONSULTA todos responsaveis
+  //funcionando 20/12
   app.get('/responsaveis', (req, res) => {
     db.responsavel.findAll()
       .then(responsaveis => {
@@ -10,62 +11,47 @@ module.exports = (app, db) => {
       });
   });
 
-  // GET one owner by id
+  // CONSULTA responsavel por id
+  //funcionando 20/12
   app.get('/responsavel/:id', (req, res) => {
-    const id = req.params.id_responsavel;
     db.responsavel.find({
-      where: { id: id_responsavel}
+      where: { id_responsavel: req.params.id}
     })
       .then(responsavel => {
         res.json(responsavel);
       });
   });
 
-  // POST single owner
+  // CADASTRA responsavel
+  //funcionando 20/12
   app.post('/responsavel', (req, res) => {
-    const nomeResponsavel = req.body.nome;
-    const telefoneResponsavel = req.body.telefone;
-    const identificacaoResponsavel = req.body.identificacao;
-    const emailResponsavel = req.body.email;
-    const ruaResponsavel = req.body.rua;
-    const numeroResponsavel = req.body.numero;
-    const complementoResponsavel = req.body.complemento;
-    const bairroResponsavel = req.body.bairro;
-    const cepResponsavel = req.body.cep;
-    const id_cidadeResponsavel = req.body.id_cidade;
-    const id_estadoResponsavel = req.body.id_estado;
-    const id_paisResponsavel = req.body.id_pais;
-    const fotoResponsavel = req.body.foto;
-    const validadoResponsavel = req.body.validado;
-    const senhaResponsavel  = req.body.req.body.senha;
     db.responsavel.create({
-      nomeResponsavel: nome,
-      telefoneResponsavel: telefone,
-      identificacaoResponsavel: identificacao,
-      emailResponsavel: email,
-      ruaResponsavel: rua,
-      numeroResponsavel: numero,
-      complementoResponsavel: complemento,
-      bairroResponsavel: bairro,
-      cepResponsavel: cep,
-      id_cidadeResponsavel: id_cidade,
-      id_estadoResponsavel: id_estado,
-      id_paisResponsavel: id_pais,
-      fotoResponsavel: foto,
-      validadoResponsavel: validado,
-      senhaResponsavel: senha
+      nome: req.body.nome,
+      telefone: req.body.telefone,
+      identificacao: req.body.identificacao,
+      email: req.body.email,
+      rua: req.body.rua,
+      numero: req.body.numero,
+      complemento: req.body.complemento,
+      bairro: req.body.bairro,
+      cep: req.body.cep,
+      id_cidade: req.body.id_cidade,
+      id_estado: req.body.id_estado,
+      id_pais: req.body.id_pais,
+      foto: req.body.foto,
+      validado: req.body.validado,
+      senha: req.body.senha
     })
       .then(newResponsavel => {
         res.json(newResponsavel);
       })
   });
 
-  // PATCH single owner
+  //ALTERA responsavel por id
   app.patch('/responsavel/:id', (req, res) => {
-    const id = req.params.id_responsavel;
     const updates = req.body.updates;
     db.responsavel.find({
-      where: { id: id_responsavel }
+      where: { id_responsavel: req.params.id }
     })
       .then(responsavel => {
         return responsavel.updateAttributes(updates)
@@ -75,11 +61,11 @@ module.exports = (app, db) => {
       });
   });
 
-  // DELETE single owner
+  // DELETA responsavel por id
+  //funcionando 20/12
   app.delete('/responsavel/:id', (req, res) => {
-    const id = req.params.id_responsavel;
     db.responsavel.destroy({
-      where: { id: id_responsavel }
+      where: { id_responsavel: req.params.id }
     })
       .then(deletedResponsavel => {
         res.json(deletedResponsavel);

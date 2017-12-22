@@ -1,7 +1,16 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-    const Crianca_responsavel = sequelize.define('crianca_responsavel', {
+    const Culto_crianca = sequelize.define('culto_crianca', {
+        id_culto: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            references: {
+                model: 'culto',
+                key: 'id_culto'
+            },
+            allowNull: false
+        },
         id_crianca: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,14 +20,11 @@ module.exports = (sequelize, DataTypes) => {
             },
             allowNull: false
         },
-        id_responsavel: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            references: {
-                model: 'responsavel',
-                key: 'id_responsavel'
-            },
-            allowNull: false
+        entrada: {
+            type: DataTypes.DATE
+        },
+        saida: {
+            type: DataTypes.DATE
         }
     }, {
             paranoid: true,
@@ -27,15 +33,15 @@ module.exports = (sequelize, DataTypes) => {
         }, {
             classMethods: {
                 associate: (models) => {
-                    Crianca_responsavel.belongsToMany(models.Responsavel, {
-                        foreignKey: 'fk_idresponsavel'
+                    Culto_crianca.belongsToMany(models.Culto, {
+                        foreignKey: 'fk_idculto_crianca'
                     }),
-                    Crianca_responsavel.belongsToMany(models.Crianca, {
-                        foreignKey: 'fk_idcrianca'
+                    Culto_crianca.belongsToMany(models.Crianca, {
+                        foreignKey: 'fk_idcrianca_culto'
                     })
                 }
             }
         }
     )
-    return Crianca_responsavel;
+    return Culto_crianca;
 };

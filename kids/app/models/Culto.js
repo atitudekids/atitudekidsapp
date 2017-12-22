@@ -1,32 +1,26 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-    const Crianca = sequelize.define('crianca', {
-        id_crianca: {
+    const Culto = sequelize.define('culto', {
+        id_culto: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
-        nome: {
-            type: DataTypes.STRING,
-            required: true
+        id_sala: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'sala',
+                key: 'id_sala'
+            },
+            allowNull: false
         },
-        dt_nascimento: {
+        data_culto: {
             type: DataTypes.DATE,
             allowNull: false
         },
-        identificacao: {
-            type: DataTypes.STRING
-        },
-        foto_crianca: {
-            type: DataTypes.BLOB('long'),
-            //allowNull: false
-        },
-        observacao: {
-            type: DataTypes.STRING
-        },
-        validado: {
+        turno: {
             type: DataTypes.ENUM,
             values: ['0', '1']
         }
@@ -36,5 +30,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
         freezeTableName: true
     });
-    return Crianca;
+    return Culto;
 };

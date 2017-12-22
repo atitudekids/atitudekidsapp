@@ -67,13 +67,25 @@ db.sequelize = sequelize;
 db.responsavel = require('../models/Responsavel.js')(sequelize, Sequelize);
 db.crianca = require('../models/Crianca.js')(sequelize, Sequelize);
 db.crianca_responsavel = require('../models/Crianca_responsavel.js')(sequelize, Sequelize);
+db.voluntario = require('../models/Voluntario.js')(sequelize, Sequelize);
+db.culto = require('../models/Culto.js')(sequelize, Sequelize);
+db.escala_voluntario = require('../models/Escala_voluntario.js')(sequelize, Sequelize);
+db.culto_crianca = require('../models/Culto_crianca.js')(sequelize, Sequelize);
+db.sala = require('../models/Sala.js')(sequelize, Sequelize);
+db.cor = require('../models/Cor.js')(sequelize, Sequelize);
+db.cidade = require('../models/Cidade.js')(sequelize, Sequelize);
+db.pais = require('../models/Pais.js')(sequelize, Sequelize);
+db.estado = require('../models/Estado.js')(sequelize, Sequelize);
 
 //Relations
-db.crianca.belongsToMany(db.responsavel, {
-  through: db.crianca_responsavel
-});
-db.responsavel.belongsToMany(db.crianca, {
-  through: db.crianca_responsavel
-});
+// db.crianca.belongsToMany(db.responsavel, {
+//   through: db.crianca_responsavel
+// });
+// db.responsavel.belongsToMany(db.crianca, {
+//   through: db.crianca_responsavel
+// });
+
+db.sala.hasOne(db.cor);
+db.cor.belongsTo(db.sala);
 
 module.exports = db;

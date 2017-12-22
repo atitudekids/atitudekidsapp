@@ -1,22 +1,22 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-    const Crianca_responsavel = sequelize.define('crianca_responsavel', {
-        id_crianca: {
+    const Escala_voluntario = sequelize.define('escala_voluntario', {
+        id_voluntario: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             references: {
-                model: 'crianca',
-                key: 'id_crianca'
+                model: 'voluntario',
+                key: 'id'
             },
             allowNull: false
         },
-        id_responsavel: {
+        id_culto: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             references: {
-                model: 'responsavel',
-                key: 'id_responsavel'
+                model: 'culto',
+                key: 'id_culto'
             },
             allowNull: false
         }
@@ -27,15 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         }, {
             classMethods: {
                 associate: (models) => {
-                    Crianca_responsavel.belongsToMany(models.Responsavel, {
-                        foreignKey: 'fk_idresponsavel'
+                    Escala_voluntario.belongsToMany(models.Voluntario, {
+                        foreignKey: 'fk_idvoluntario'
                     }),
-                    Crianca_responsavel.belongsToMany(models.Crianca, {
-                        foreignKey: 'fk_idcrianca'
+                    Escala_voluntario.belongsToMany(models.Culto, {
+                        foreignKey: 'fk_idculto'
                     })
                 }
             }
         }
     )
-    return Crianca_responsavel;
+    return Escala_voluntario;
 };

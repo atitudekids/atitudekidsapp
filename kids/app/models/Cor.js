@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-  const Responsavel = sequelize.define('cor', {
+  const Cor = sequelize.define('cor', {
     id_cor: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

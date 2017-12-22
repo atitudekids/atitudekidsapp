@@ -2,7 +2,8 @@
 
 const routes = [
   require('./routes/responsavel'),
-  require('./routes/crianca')
+  require('./routes/crianca'),
+  require('./routes/voluntario')
 ];
 
 // Add access to the app and db objects to each route

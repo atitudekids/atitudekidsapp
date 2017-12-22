@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) => {
-  const Responsavel = sequelize.define('responsavel', {
-    id_responsavel: {
+  const Voluntario = sequelize.define('voluntario', {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -69,6 +69,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BLOB('long'),
         //allowNull: false
     },
+    administrador: {
+        type: DataTypes.ENUM,
+        required: true,
+        values: ['0', '1']
+    },
     validado: {
         type: DataTypes.ENUM,
         required: true,
@@ -84,5 +89,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     freezeTableName: true
   });
-  return Responsavel;
+  return Voluntario;
 };

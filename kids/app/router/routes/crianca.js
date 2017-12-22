@@ -1,7 +1,9 @@
 'use strict';
 
 module.exports = (app, db) => {
+  
   // GET all criancas
+  //funcionando 20/12
   app.get('/criancas', (req, res) => {
     db.crianca.findAll()
       .then(criancas => {
@@ -10,6 +12,7 @@ module.exports = (app, db) => {
   });
 
   // GET one crianca by id
+  //funcionando 20/12 
   app.get('/crianca/:id', (req, res) => {
     db.crianca.find({
       where: { id_crianca: req.params.id}
@@ -21,32 +24,25 @@ module.exports = (app, db) => {
 
   // POST single crianca
   app.post('/crianca', (req, res) => {
-    console.log('hihi', req.body)
-    const nome = req.body.nome;
-    const dataNascimentoCrianca = req.body.dt_nascimento;
-    const identificacaoCrianca = req.body.identificacao;
-    const fotoCrianca = req.body.foto_crianca;
-    const observacao = req.body.observacao;
-    const validaCrianca = req.body.validacao;
+    console.log('Cadastro da criança: ', req.body);
     db.crianca.create({
-      nome: nome,
-      dataNascimentoCrianca: dt_nascimento,
-      identificacaoCrianca: identificacao,
-      fotoCrianca: foto_crianca,
-      observacao: observacao,
-      validaCrianca: validacao
+      nome: req.body.nome,
+      dt_nascimento: req.body.dt_nascimento,
+      identificacao: req.body.identificacao,
+      foto_crianca: req.body.foto_crianca,
+      observacao: req.body.observacao,
+      validado: req.body.validado
     })
       .then(newCrianca => {
         res.json(newCrianca);
       });
   }); 
 
-  // PATCH single pet
+  // PATCH single crianca
   app.patch('/crianca/:id', (req, res) => {
-    const id = req.params.id;
     const updates = req.body.updates;
     db.crianca.find({
-      where: { id: id_crianca }
+      where: { id_crianca: req.params.id }
     })
       .then(crianca => {
         return crianca.updateAttributes(updates);
@@ -56,10 +52,11 @@ module.exports = (app, db) => {
       });
   });
 
+  //deleta uma criança pelo id
+  //funcionando 20/12
   app.delete('/crianca/:id', (req, res) => {
-    const id = req.params.id_crianca;
     db.crianca.destroy({
-      where: { id: id_crianca }
+      where: { id_crianca: req.params.id }
     })
       .then(deletedCrianca => {
         res.json(deletedCrianca);
