@@ -88,6 +88,22 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
     timestamps: false,
     freezeTableName: true
-  });
+  },
+  {
+    classMethods: {
+        associate: (models) => {
+            Voluntario.belongsTo(models.Pais, {
+                foreignKey: 'fk_voluntario_pais'
+            }),
+            Voluntario.belongsTo(models.Estado, {
+                foreignKey: 'fk_voluntario_estado'
+            }),
+            Voluntario.hasMany(models.Cidade, {
+                foreignKey: 'fk_voluntario_cidade'
+            })
+        }
+    }
+  }
+)
   return Voluntario;
 };

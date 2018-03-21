@@ -21,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
     timestamps: false,
     freezeTableName: true
-  });
+  },
+  {
+    classMethods: {
+      associate: (models) => {
+        Cor.hasMany(models.Sala, {
+          foreignKey: 'fk_cor'
+        })
+      }
+    }
+  }
+)
   return Cor;
 };

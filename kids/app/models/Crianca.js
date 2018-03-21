@@ -35,6 +35,6 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
         timestamps: false,
         freezeTableName: true
-    });
+    })
     return Crianca;
 };

@@ -3,7 +3,7 @@
 module.exports = (app, db) => {
 
   // CONSULTA todos voluntarios
-  //
+  //funcionando 28/12
   app.get('/voluntarios', (req, res) => {
     db.voluntario.findAll()
       .then(voluntarios => {
@@ -12,7 +12,7 @@ module.exports = (app, db) => {
   });
 
   // CONSULTA voluntario por id
-  //
+  //funcionando 28/12
   app.get('/voluntario/:id', (req, res) => {
     db.voluntario.find({
       where: { id: req.params.id}
@@ -23,7 +23,7 @@ module.exports = (app, db) => {
   });
 
   // CADASTRA voluntario
-  //
+  //funcionando 28/12
   app.post('/voluntario', (req, res) => {
     db.voluntario.create({
       nome: req.body.nome,
@@ -64,7 +64,7 @@ module.exports = (app, db) => {
   });
 
   // DELETA voluntario por id
-  //
+  //funcionando 28/12
   app.delete('/voluntario/:id', (req, res) => {
     db.voluntario.destroy({
       where: { id: req.params.id }

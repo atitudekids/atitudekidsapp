@@ -29,6 +29,16 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
         timestamps: false,
         freezeTableName: true
-    });
+    },
+    {
+      classMethods: {
+        associate: (models) => {
+            Culto.belongsTo(models.Sala, {
+                foreignKey: 'fk_cultosala'
+            })
+        }
+      }
+    }
+)
     return Culto;
 };

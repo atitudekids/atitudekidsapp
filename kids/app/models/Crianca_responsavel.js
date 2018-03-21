@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             paranoid: true,
             underscored: true,
             timestamps: false
-        }, {
+        }, 
+        {
             classMethods: {
                 associate: (models) => {
                     Crianca_responsavel.belongsToMany(models.Responsavel, {

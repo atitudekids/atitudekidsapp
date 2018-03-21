@@ -25,6 +25,22 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
     timestamps: false,
     freezeTableName: true
-  });
+  },
+  {
+    classMethods: {
+      associate: (models) => {
+        Cidade.belongsTo(models.Estado, {
+          foreignKey: 'fk_estado'
+        }),
+        Cidade.hasMany(models.Voluntario, {
+          foreignKey: 'fk_voluntario_cidade'
+        }),
+        Cidade.hasMany(models.Responsavel, {
+          foreignKey: 'fk_responsavel_cidade'
+        })
+      }
+    }
+  }
+)
   return Cidade;
 };

@@ -3,7 +3,7 @@
 module.exports = (app, db) => {
   
   // GET all criancas
-  //funcionando 20/12
+  //funcionando 28/12
   app.get('/criancas', (req, res) => {
     db.crianca.findAll()
       .then(criancas => {
@@ -12,7 +12,7 @@ module.exports = (app, db) => {
   });
 
   // GET one crianca by id
-  //funcionando 20/12 
+  //funcionando 28/12 
   app.get('/crianca/:id', (req, res) => {
     db.crianca.find({
       where: { id_crianca: req.params.id}
@@ -23,6 +23,7 @@ module.exports = (app, db) => {
   });
 
   // POST single crianca
+  //funcionando 28/12
   app.post('/crianca', (req, res) => {
     console.log('Cadastro da criança: ', req.body);
     db.crianca.create({
@@ -53,7 +54,7 @@ module.exports = (app, db) => {
   });
 
   //deleta uma criança pelo id
-  //funcionando 20/12
+  //funcionando 28/12
   app.delete('/crianca/:id', (req, res) => {
     db.crianca.destroy({
       where: { id_crianca: req.params.id }

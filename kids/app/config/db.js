@@ -77,15 +77,4 @@ db.cidade = require('../models/Cidade.js')(sequelize, Sequelize);
 db.pais = require('../models/Pais.js')(sequelize, Sequelize);
 db.estado = require('../models/Estado.js')(sequelize, Sequelize);
 
-//Relations
-// db.crianca.belongsToMany(db.responsavel, {
-//   through: db.crianca_responsavel
-// });
-// db.responsavel.belongsToMany(db.crianca, {
-//   through: db.crianca_responsavel
-// });
-
-db.sala.hasOne(db.cor);
-db.cor.belongsTo(db.sala);
-
 module.exports = db;
