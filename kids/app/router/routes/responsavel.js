@@ -39,8 +39,8 @@ module.exports = (app, db) => {
       id_estado: req.body.id_estado,
       id_pais: req.body.id_pais,
       foto: req.body.foto,
-      validado: req.body.validado,
-      senha: req.body.senha
+      validado: 1,
+      senha: 'teste'
     })
       .then(newResponsavel => {
         res.json(newResponsavel);

@@ -46,8 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         references: {
             model: 'cidade',
             key: 'id_cidade'
-        },
-        allowNull: false
+        }
     },
     id_estado: {
         type: DataTypes.STRING,
@@ -55,16 +54,14 @@ module.exports = (sequelize, DataTypes) => {
             model: 'estado',
             key: 'id_estado'
         },
-        allowNull: false
-    },
+    }
     id_pais: {
         type: DataTypes.STRING,
         references: {
             model: 'pais',
             key: 'id_pais'
         },
-        allowNull: false
-    },
+    }
     foto: {
         type: DataTypes.BLOB('long'),
         //allowNull: false
